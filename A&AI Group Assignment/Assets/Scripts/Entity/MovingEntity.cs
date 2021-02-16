@@ -8,6 +8,7 @@ public abstract class MovingEntity : BaseGameEntity
     [SerializeField] float maxSpeed = 15f;
     [SerializeField] float mass = 30f;
     [SerializeField] float maxForce = 10f;
+    [SerializeField] float radiusSize = 3f;
 
     public float GetMaxSpeed(){
         return maxSpeed;
@@ -19,5 +20,9 @@ public abstract class MovingEntity : BaseGameEntity
 
     public float GetMaxForce(){
         return maxForce;
+    }
+
+    public float GetRadiusSize(){
+        return radiusSize;
     }
 }

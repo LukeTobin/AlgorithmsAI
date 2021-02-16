@@ -302,6 +302,45 @@ MonoBehaviour:
   maxSpeed: 0
   maxForce: 0
   mass: 0
+  radiusSize: 0
+  vechile: {fileID: 0}
+--- !u!114 &1232109508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1232109506}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3030cb709d988f14181236eabcb229fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  acceleration: {x: 0, y: 0}
+  velocity: {x: 0, y: 0}
+  maxSpeed: 0
+  maxForce: 0
+  mass: 0
+  radiusSize: 0
+  vechile: {fileID: 0}
+--- !u!114 &1232109513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1232109506}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f15851c03c156e24ea811c17f6e3edd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  acceleration: {x: 0, y: 0}
+  velocity: {x: 0, y: 0}
+  maxSpeed: 0
+  maxForce: 0
+  mass: 0
+  radiusSize: 0
   vechile: {fileID: 0}
 --- !u!1 &1307616194
 GameObject:
@@ -372,7 +411,12 @@ PrefabInstance:
     - target: {fileID: 7658730827638731342, guid: bcefe0e721a27dc47b0c8b49b387447c,
         type: 3}
       propertyPath: maxSpeed
-      value: 15
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7658730827638731342, guid: bcefe0e721a27dc47b0c8b49b387447c,
+        type: 3}
+      propertyPath: radiusSize
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 8718624610436371910, guid: bcefe0e721a27dc47b0c8b49b387447c,
         type: 3}

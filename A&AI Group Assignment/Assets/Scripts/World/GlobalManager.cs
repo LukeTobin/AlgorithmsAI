@@ -20,7 +20,7 @@ public class GlobalManager : MonoBehaviour
         }
     }
 
-    public GameObject GetSeekObject(){
+    public GameObject GetTargetObject(){
         return objectToSeek;
     }
 }

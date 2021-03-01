@@ -15,8 +15,7 @@ public abstract class SteeringBehavior : MonoBehaviour
     public float mass;
     public float radiusSize;
 
-    [Header("Refs")]
-    public Vechile vechile;
+    [HideInInspector] public Vechile vechile;
 
     void Start() {
         // reset our acceleration and velocity. This makes sure no external forces are being applied when the Vechile is instansiated
@@ -34,12 +33,13 @@ public abstract class SteeringBehavior : MonoBehaviour
         // Truncate our steering vector based around our maxSpeed
         acceleration = Vector2.ClampMagnitude(steering, maxSpeed);
         // apply our steering value to our current velocity each frame
-        velocity += steering * Time.deltaTime;
+        velocity += acceleration * Time.deltaTime;
         // update our vechiles position based on our velocity each frame
         transform.position += (Vector3)velocity * Time.deltaTime; // casting our velocity too a Vector3 too update our objects position
     }
 
     protected virtual void RotateObject(Vector2 direction){
+        
         direction.Normalize();
         float rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         rotZ -= 90;

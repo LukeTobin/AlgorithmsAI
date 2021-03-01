@@ -9,17 +9,19 @@ public class Arrive : SteeringBehavior
 
     void Start(){
         if(target == null)
-            target = GlobalManager.Instance.GetTargetObject();
+            target = World.Instance.GetTargetObject();
         vechile = GetComponent<Vechile>();
         maxSpeed = vechile.GetMaxSpeed();
         radius = vechile.GetRadiusSize();
     }
 
     void Update() {
+        if(!vechile.steeringMovementOnUpdate) return;
         Steering(target.transform.position);
         RotateObject((Vector2)target.transform.position - (Vector2)transform.position);
     }
 
+    // still needs an additional force applied back on itself
     protected override void Steering(Vector2 targetPostion)
     {
         // Get our current distance from the target compared to our current position
@@ -34,7 +36,7 @@ public class Arrive : SteeringBehavior
         // Get the desired velocity towards our target, based on distance
         Vector2 desiredVelocity;
         if(distanceFromTarget < radius)
-            desiredVelocity = distance.normalized * distanceFromTarget;
+            desiredVelocity = distance.normalized * maxSpeed * (distanceFromTarget / radius);
         else
             desiredVelocity = distance.normalized * maxSpeed;
         

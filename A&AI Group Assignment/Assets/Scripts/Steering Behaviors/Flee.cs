@@ -9,7 +9,7 @@ public class Flee : SteeringBehavior
     void Start()
     {
         if(target == null)
-            target = GlobalManager.Instance.GetTargetObject();
+            target = World.Instance.GetTargetObject();
         vechile = GetComponent<Vechile>();
         maxSpeed = vechile.GetMaxSpeed();
     }
@@ -17,6 +17,7 @@ public class Flee : SteeringBehavior
     // Update is called once per frame
     void Update()
     {
+        if(!vechile.steeringMovementOnUpdate) return;
         Steering(-(Vector2)target.transform.position);
         RotateObject(-(Vector2)target.transform.position - (Vector2)transform.position);
     }

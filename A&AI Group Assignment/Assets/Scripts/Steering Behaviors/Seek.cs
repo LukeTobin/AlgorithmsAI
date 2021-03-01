@@ -8,12 +8,13 @@ public class Seek : SteeringBehavior
 
     void Start(){
         if(target == null)
-            target = GlobalManager.Instance.GetTargetObject();
+            target = World.Instance.GetTargetObject();
         vechile = GetComponent<Vechile>();
         maxSpeed = vechile.GetMaxSpeed();
     }
 
     void Update() {
+        if(!vechile.steeringMovementOnUpdate) return;
         Steering((Vector2)target.transform.position); // casting our targets position as a Vector2
         RotateObject((Vector2)target.transform.position - (Vector2)transform.position);
     }

@@ -41,7 +41,7 @@ public class World : MonoBehaviour
             objectToSeek.transform.position = new Vector3(objectToSeek.transform.position.x, objectToSeek.transform.position.y, 0);
 
             if(pathfindingEnabled){
-                List<Node> path = pathfinding.AStarPath((Vector2)agent.transform.position, (Vector2)objectToSeek.transform.position);
+                List<Vector2> path = pathfinding.AStarPath((Vector2)agent.transform.position, (Vector2)objectToSeek.transform.position);
             }
         }
     }

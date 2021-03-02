@@ -17,7 +17,7 @@ public class Graph
 
         // loop through each index of the matricies and instantiate a node at each co-ordinate
         for(int x = 0;x < graphGrid.GetLength(0);x++){
-            for(int y = 0;y < graphGrid.GetLength(0);y++){
+            for(int y = 0;y < graphGrid.GetLength(1);y++){
                 // Instantiate the node at x,y with no rotation applied
                 GameObject node = GameObject.Instantiate(nodeObject, new Vector3(x, y, 1), Quaternion.identity);
                 // make the node a child of our previously create object

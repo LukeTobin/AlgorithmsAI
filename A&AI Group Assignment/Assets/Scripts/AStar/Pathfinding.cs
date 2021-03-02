@@ -20,11 +20,14 @@ public class Pathfinding : MonoBehaviour
     }
 
 
-    public List<Node> AStarPath(Vector2 startingPosition, Vector2 endingPosition){
+    public List<Vector2> AStarPath(Vector2 startingPosition, Vector2 endingPosition){
         List<Node> path = FindPath(startingPosition, endingPosition);
         if(path != null){
-            Debug.Log("A path was found and returned");
-            return path;
+            List<Vector2> vectorPath = new List<Vector2>();
+            for(int i = 0;i < path.Count;i++){
+                vectorPath.Add(new Vector2(path[i].transform.position.x, path[i].transform.position.y));
+            }
+            return vectorPath;
         }else{
             // no path found GUI popup?
             Debug.Log($"No path was found from { startingPosition } to {endingPosition}.");
@@ -50,13 +53,11 @@ public class Pathfinding : MonoBehaviour
 
         for(int x = 0; x < width; x++){
             for(int y = 0; y < height; y++){
-                Node node = FindNode(new Vector2(width, height));
+                Node node = FindNode(new Vector2(x, y));
                 if(node != null){
-                    node.g = 100000;//int.MaxValue; // set our distance to infinite at first
+                    node.g = int.MaxValue; // set our distance to infinite at first
                     node.f = node.g + node.h;
                     node.predecessor = null;
-                }else{
-                    Debug.Log($"no node at {x}, {y}");
                 }
             }
         }
@@ -71,8 +72,7 @@ public class Pathfinding : MonoBehaviour
 
             // check if it is our final node and if it is, calculate and return the path
             if(currentNode == endNode){
-                Debug.Log("found a path...");
-                return null; 
+                return ConstructPathOrder(endNode);
             }
 
             // move the current node from the open list to the closed list
@@ -93,7 +93,6 @@ public class Pathfinding : MonoBehaviour
                 */
 
                 int tentativeGScore = currentNode.g + GetDistanceBetweenNodes(currentNode, neighbour);
-                Debug.Log(tentativeGScore + " , " + neighbour.g);
                 if(tentativeGScore < neighbour.g){
                     neighbour.predecessor = currentNode;
                     neighbour.g = tentativeGScore;
@@ -161,5 +160,20 @@ public class Pathfinding : MonoBehaviour
                 lowestCostNode = nodes[i];
         }
         return lowestCostNode;
+    }
+
+    List<Node> ConstructPathOrder(Node finalNode){
+        List<Node> path = new List<Node>();
+        // add the last node to the list
+        path.Add(finalNode);
+        // construct a list with each predecessor node until you're back at the start node
+        Node currentNode = finalNode;
+        while(currentNode.predecessor != null){
+            path.Add(currentNode.predecessor);
+            currentNode = currentNode.predecessor;
+        }
+        // reverse the order of the path
+        path.Reverse();
+        return path;
     }
 }

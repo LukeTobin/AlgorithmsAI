@@ -1820,7 +1820,7 @@ MonoBehaviour:
   objectToSeek: {fileID: 93974858}
   pathfindingEnabled: 0
   graphWidth: 20
-  graphHeight: 5
+  graphHeight: 20
   nodePrefab: {fileID: 6087140686825607798, guid: 4a71bafe40a555647a1fb7f751eff88a,
     type: 3}
 --- !u!4 &1307616196
